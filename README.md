@@ -67,3 +67,8 @@ source venv/bin/activate
 ### Delete Report
 - URL: `http://127.0.0.1:8000/delete/[id]`
 - Method: DELETE
+
+### List All Reports
+List all reports in format: `{"report_id": "report_title"}`
+- URL: `http://127.0.0.1:8000/all/`
+- Method: Get

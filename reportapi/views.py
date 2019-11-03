@@ -64,8 +64,11 @@ def delete(request, report_id):
 
 
 def all_reports(request):
-    reports = Report.objects.all()
+    reports = Report.objects.values()
+    response = {}
 
-    serialized_queryset = serializers.serialize('json', reports)
+    for report in reports:
+        response[report['id']] = report['title']
 
-    return HttpResponse(serialized_queryset, content_type='application/json')
+    return JsonResponse(response)
+
