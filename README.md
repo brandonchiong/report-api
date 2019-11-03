@@ -31,40 +31,39 @@ source venv/bin/activate
 
 ## API Endpoints
 
-### - Create Report
-`http://127.0.0.1:8000/create/`
+### Create Report
+- URL: `http://127.0.0.1:8000/create/`
 - Method: POST
-- Payload:
+- Body Payload (JSON):
 ```
 {
-	"title": "Example Title",
-	"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
-                        ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
-                        ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-	"created_by": "Jane Doe"
+    "title": "Example Title",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+                    ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
+                    ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    "created_by": "Jane Doe"
 }
 ```
 
-
-### - Read Report
-`http://127.0.0.1:8000/read/[id]`
+### Read Report
+- URL: `http://127.0.0.1:8000/read/[id]`
 - Method: GET
 
-### - Update Report
-`http://127.0.0.1:8000/update/[id]`
+### Update Report
+- URL: `http://127.0.0.1:8000/update/[id]`
 - Method: POST
 - Note: Only given fields will be updated.  All fields not required in payload.
-- Payload:
+- Body Payload (JSON):
 ```
 {
-	"title": "Example Revision",
-	"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
-                        ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
-                        ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-	"created_by": "Jane Doe"
+    "title": "Example Revision",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+                    ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
+                    ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    "created_by": "Jane Doe"
 }
 ```
 
-### - Delete Report
-`http://127.0.0.1:8000/delete/[id]`
+### Delete Report
+- URL: `http://127.0.0.1:8000/delete/[id]`
 - Method: DELETE
