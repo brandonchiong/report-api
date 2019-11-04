@@ -1,3 +1,4 @@
+from django.core.exceptions import ObjectDoesNotExist
 from django.http import JsonResponse, HttpResponseBadRequest
 from .models import Report
 import json
@@ -28,7 +29,10 @@ def create(request):
 
 
 def read(request, report_id):
-    report = Report.objects.get(id=report_id)
+    try:
+        report = Report.objects.get(id=report_id)
+    except ObjectDoesNotExist:
+        return HttpResponseBadRequest('Report ID not found.')
 
     response = {
         'title': report.title,
@@ -42,8 +46,12 @@ def read(request, report_id):
 
 def update(request, report_id):
     if request.method == 'POST':
+        try:
+            report = Report.objects.get(id=report_id)
+        except ObjectDoesNotExist:
+            return HttpResponseBadRequest('Report ID not found.')
+
         json_data = json.loads(request.body)
-        report = Report.objects.get(id=report_id)
 
         if 'title' in json_data:
             report.title = json_data['title']
@@ -67,7 +75,11 @@ def update(request, report_id):
 
 
 def delete(request, report_id):
-    report = Report.objects.get(id=report_id)
+    try:
+        report = Report.objects.get(id=report_id)
+    except ObjectDoesNotExist:
+        return HttpResponseBadRequest('Report ID not found.')
+
     report.delete()
 
     response = {

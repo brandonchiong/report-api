@@ -1,10 +1,13 @@
 # report-api
 
 ## Setup
-Install python3 if needed:
+- Install python3 if needed:
 ```
 brew install python3
 ```
+
+- Git Clone this repository
+- Change directories to this project's location
 
 ## Make virtualenv
 On Terminal:
