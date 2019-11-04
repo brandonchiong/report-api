@@ -1,5 +1,4 @@
-from django.core import serializers
-from django.http import HttpResponse, JsonResponse, HttpResponseBadRequest
+from django.http import JsonResponse, HttpResponseBadRequest
 from .models import Report
 import json
 
@@ -19,7 +18,11 @@ def create(request):
 
         report.save()
 
-        return HttpResponse('Report created successfully!')
+        response = {
+            'content': 'Report ID: ' + str(report.id)
+        }
+
+        return JsonResponse(response)
     else:
         return HttpResponseBadRequest('POST method required.')
 
@@ -51,7 +54,14 @@ def update(request, report_id):
 
         report.save()
 
-        return HttpResponse('Report updated successfully!')
+        response = {
+            'title': report.title,
+            'description': report.description,
+            'created_by': report.created_by,
+            'created_at_timestamp': int(report.created_at.timestamp())
+        }
+
+        return JsonResponse(response)
     else:
         return HttpResponseBadRequest('POST method required.')
 
@@ -60,7 +70,11 @@ def delete(request, report_id):
     report = Report.objects.get(id=report_id)
     report.delete()
 
-    return HttpResponse('Report deleted successfully!')
+    response = {
+        'content': 'Report deleted successfully.'
+    }
+
+    return JsonResponse(response)
 
 
 def all_reports(request):
